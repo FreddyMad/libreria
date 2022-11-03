@@ -13,7 +13,7 @@ class validateBook extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,12 @@ class validateBook extends FormRequest
     public function rules()
     {
         return [
-            //
+            'txtTitulo'=>'required',
+            'txtIsbn'=>'required',
+            'txtAutor'=>'required',
+            'txtPaginas'=>'required',
+            'txtEditorial'=>'required',
+            'txtEmail'=>'required'
         ];
     }
 }

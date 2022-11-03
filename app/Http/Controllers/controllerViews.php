@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\validateBook;
 
 class controllerViews extends Controller
 {
@@ -14,8 +15,8 @@ class controllerViews extends Controller
         return view('registro');
     }
 
-    public function addBook(){
-        return view('registro');
+    public function addBook(validateBook $req){
+        return redirect('registro')->with('confirm','txtTitulo');
     }
 
 }

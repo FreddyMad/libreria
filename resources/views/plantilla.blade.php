@@ -17,8 +17,8 @@
                 <img src="{!! asset('img/growth-book.svg') !!}" alt="icono" class="hero__icon">
             </figure>
             <div class="hero__options">
-                <a href="#" class="hero__navlink">Inicio</a>
-                <a href="#" class="hero__navlink">Formulario</a>
+                <a href="{{route('main')}}" class="hero__navlink {{request()->routeIs('main')?'text-primary':'active'}}">Inicio</a>
+                <a href="{{route('form')}}" class="hero__navlink {{request()->routeIs('form')?'text-primary':'active'}}">Formulario</a>
             </div>
         </nav>
     </header>
