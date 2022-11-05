@@ -16,7 +16,9 @@ class controllerViews extends Controller
     }
 
     public function addBook(validateBook $req){
-        return redirect('registro')->with('confirm','txtTitulo');
+        return redirect('registro')
+                ->with('confirm','Se guardo exitosamente')
+                ->with('libro', $req->txtTitulo);
     }
 
 }

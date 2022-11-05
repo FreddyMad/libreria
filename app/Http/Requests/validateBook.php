@@ -25,11 +25,11 @@ class validateBook extends FormRequest
     {
         return [
             'txtTitulo'=>'required',
-            'txtIsbn'=>'required',
+            'txtIsbn'=>'min:13|required',
             'txtAutor'=>'required',
-            'txtPaginas'=>'required',
+            'txtPaginas'=>'numeric|required',
             'txtEditorial'=>'required',
-            'txtEmail'=>'required'
+            'txtEmail'=>'email|required'
         ];
     }
 }

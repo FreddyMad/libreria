@@ -4,6 +4,17 @@
 
     @section('contenido')
 
+    @if (session()->has('confirm'))
+    <?php $libro = session()->get('libro')?>
+      {!!"<script> Swal.fire({
+        position: 'top',
+        icon: 'success',
+        title: 'El libro {$libro} se añadio exitosamente',
+        showConfirmButton: false,
+        timer: 3500
+      })</script>"!!}
+    @endif
+
         <main>
             <div class="titulo">
                 <h1 class="titulo--principal">Nuevo Registro</h1>
@@ -13,16 +24,6 @@
                 <div class="col"> 
                   <img src="{!! asset('img/icon.svg') !!}" alt="icono" style="width: 100px">
                 </div>
-
-                @if (session()->has('confirm'))
-                  {!!"<script> Swal.fire({
-                    position: 'top',
-                    icon: 'success',
-                    title: 'El libro se añadio exitosamente',
-                    showConfirmButton: false,
-                    timer: 3500
-                  })</script>"!!}
-                @endif
 
                 <div class="card card-boby mt-3 mb-3" style="background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%)">
                   <form class="row g-3 mt-1" action = "{{route('saveBook')}}" method="POST">
@@ -44,7 +45,7 @@
                     </div>
                     <div class="col-4">
                       <label class="form-label">Páginas</label>
-                      <input type="number" class="form-control" value="{{old('txtPaginas')}}" name="txtPaginas" placeholder="Ingresa el número de páginas del libro">
+                      <input type="text" class="form-control" value="{{old('txtPaginas')}}" name="txtPaginas" placeholder="Ingresa el número de páginas del libro">
                       <p class="text-warning fst-Italic">{{ $errors->first('txtPaginas')}}</p>
                     </div>
                     <div class="col-6">
@@ -54,7 +55,7 @@
                     </div>
                     <div class="col-6">
                        <label class="form-label">Email de Editorial</label>
-                       <input type="email" class="form-control" value="{{old('txtEmail')}}" name="txtEmail" placeholder="Ingresa el email de la editorial del libro">
+                       <input type="text" class="form-control" value="{{old('txtEmail')}}" name="txtEmail" placeholder="Ingresa el email de la editorial del libro">
                        <p class="text-warning fst-Italic">{{ $errors->first('txtEmail')}}</p>
                     </div>
                     <div class="col-12">
