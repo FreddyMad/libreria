@@ -18,7 +18,11 @@
             </figure>
             <div class="hero__options">
                 <a href="{{route('main')}}" class="hero__navlink {{request()->routeIs('main')?'text-primary':'active'}}">Inicio</a>
-                <a href="{{route('form')}}" class="hero__navlink {{request()->routeIs('form')?'text-primary':'active'}}">Formulario</a>
+                <a href="{{route('consulLibro')}}" class="hero__navlink {{request()->routeIs('consulLibro')?'text-primary':'active'}}">Consultar Libros</a>
+                <a href="{{route('form')}}" class="hero__navlink {{request()->routeIs('form')?'text-primary':'active'}}">Agregar Libro</a>
+                <a href="{{route('consulAutor')}}" class="hero__navlink {{request()->routeIs('consulAutor')?'text-primary':'active'}}">Consultar Autores</a>
+                <a href="{{route('formAutor')}}" class="hero__navlink {{request()->routeIs('formAutor')?'text-primary':'active'}}">Agregar Autor</a>
+
             </div>
         </nav>
     </header>

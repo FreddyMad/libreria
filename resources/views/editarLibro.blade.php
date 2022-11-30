@@ -4,20 +4,9 @@
 
     @section('contenido')
 
-    @if (session()->has('confirm'))
-    <?php $libro = session()->get('libro')?>
-      {!!"<script> Swal.fire({
-        position: 'top',
-        icon: 'success',
-        title: 'El libro {$libro} se añadio exitosamente',
-        showConfirmButton: false,
-        timer: 3500
-      })</script>"!!}
-    @endif
-
         <main>
             <div class="titulo">
-                <h1 class="titulo--principal">Nuevo Registro de Libro</h1>
+                <h1 class="titulo--principal">Editar Libro Registrado</h1>
             </div>
             
             <div class="container text-center mt-2">
@@ -59,7 +48,7 @@
                        <p class="text-warning fst-Italic">{{ $errors->first('txtEmail')}}</p>
                     </div>
                     <div class="col-12">
-                      <button type="submit" class="boton">Añadir</button>
+                      <button type="submit" class="boton">Editar</button>
                     </div>
                   </form>
                 </div>
