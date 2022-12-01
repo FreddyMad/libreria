@@ -15,21 +15,22 @@
                 </div>
 
                 <div class="card card-boby mt-3 mb-3" style="background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%)">
-                  <form class="row g-3 mt-1" action = "{{route('saveAutor')}}" method="POST">
+                  <form class="row g-3 mt-1" action = "{{route('autor.update', $conAut->idAutor)}}" method="POST">
                     @csrf
+                    {!!method_field('PUT')!!}
                     <div class="col-12">
                       <label class="form-label">Nombre del Autor</label>
-                      <input type="text" class="form-control" value="{{old('txtAutor')}}" name="txtAutor" placeholder="Ingresa el titulo del Autor">
+                      <input type="text" class="form-control" value="{{$conAut->nombre}}" name="txtAutor" placeholder="Ingresa el titulo del Autor">
                       <p class="text-warning fst-Italic">{{ $errors->first('txtAutor')}}</p>
                     </div>
                     <div class="col-6">
                       <label class="form-label">Fecha de Nacimiento</label>
-                      <input type="date" class="form-control" value="{{old('txtFecha')}}" name="txtFecha" placeholder="Ingresa la fecha de nacimiento del autor">
+                      <input type="date" class="form-control" value="{{$conAut->fecha}}" name="txtFecha" placeholder="Ingresa la fecha de nacimiento del autor">
                       <p class="text-warning fst-Italic">{{ $errors->first('txtFecha')}}</p>
                     </div>
                     <div class="col-6">
                       <label class="form-label">Libros Publicados</label>
-                      <input type="text" class="form-control" value="{{old('txtCant')}}" name="txtCant" placeholder="Ingresa la cantidad de libros publicadospor el autor">
+                      <input type="text" class="form-control" value="{{$conAut->publi}}" name="txtCant" placeholder="Ingresa la cantidad de libros publicadospor el autor">
                       <p class="text-warning fst-Italic">{{ $errors->first('txtCant')}}</p>
                     </div>
                     <div class="col-12">

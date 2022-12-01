@@ -9,7 +9,7 @@
                 <h1 class="titulo--principal">Consulta de Autores</h1>
             </div>
             
-            <div class="container text-center mt-2">
+            <div class="container text-center">
                 <div class="col"> 
                   <img src="{!! asset('img/icon.svg') !!}" alt="icono" style="width: 100px">
                 </div>
@@ -18,6 +18,20 @@
                 <?php $autor = session()->get('autor')?>
                   <div class="alert alert-success" role="alert">
                     El autor {{$autor}} ha sido agregado con exito
+                  </div>
+                @endif
+
+                @if (session()->has('edit'))
+                <?php $autor = session()->get('autor')?>
+                  <div class="alert alert-warning" role="alert">
+                    El autor {{$autor}} ha sido actualizado con exito
+                  </div>
+                @endif
+
+                @if (session()->has('delete'))
+                <?php $autor = session()->get('autor')?>
+                  <div class="alert alert-danger" role="alert">
+                    El autor {{$autor}} ha sido eliminado con exito
                   </div>
                 @endif
 
@@ -31,27 +45,16 @@
                             <th>Borrar</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Alfredo Madrigal Tercero</td>
-                                <td>121059641</td>
-                                <td>25-08-2001</td>
-                                <td><a href=""><img src="{!! asset('img/actualizar.png') !!}" alt="Editar" class="table__img"></a></td>
-                                <td><a href=""><img src="{!! asset('img/borrar.png') !!}" alt="Borrar" class="table__img"></a></td>
-                            </tr>
-                            <tr>
-                                <td>Gabriel Galván Niño</td>
-                                <td>154756632</td>
-                                <td>23-09-2002</td>
-                                <td><a href=""><img src="{!! asset('img/actualizar.png') !!}" alt="Editar" class="table__img"></a></td>
-                                <td><a href=""><img src="{!! asset('img/borrar.png') !!}" alt="Borrar" class="table__img"></a></td>
-                            </tr>
-                            <tr>
-                                <td>Benjamín Enríquez Téllez</td>
-                                <td>121040060</td>
-                                <td>29-11-2000</td>
-                                <td><a href=""><img src="{!! asset('img/actualizar.png') !!}" alt="Editar" class="table__img"></a></td>
-                                <td><a href=""><img src="{!! asset('img/borrar.png') !!}" alt="Borrar" class="table__img"></a></td>
-                            </tr>
+                            @foreach ($consulAut as $autores)
+                                <tr>
+                                    <td>{{$autores->nombre}}</td>
+                                    <td>{{$autores->fecha}}</td>
+                                    <td>{{$autores->publi}}</td>
+                                    <td><a href="{{route('autor.edit', $autores->idAutor)}}"><img src="{!! asset('img/actualizar.png') !!}" alt="Editar" class="table__img"></a></td>
+                                    <td><a type="button" data-bs-toggle="modal" data-bs-target="#eliminarAutor{{ $autores->idAutor }}"><img src="{!! asset('img/borrar.png') !!}" alt="Borrar" class="table__img"></a></td>
+                                    @include('eliminarAutor')
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

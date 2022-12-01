@@ -9,20 +9,13 @@
                 <h1 class="titulo--principal">Nuevo Registro de Autor</h1>
             </div>
             
-            <div class="container text-center mt-2">
+            <div class="container text-center mt-2 mb-2">
                 <div class="col"> 
                   <img src="{!! asset('img/icon.svg') !!}" alt="icono" style="width: 100px">
                 </div>
 
-                @if (session()->has('confirm'))
-                <?php $autor = session()->get('autor')?>
-                  <div class="alert alert-success" role="alert">
-                    El autor {{$autor}} ha sido agregado con exito
-                  </div>
-                @endif
-
                 <div class="card card-boby mt-3 mb-3" style="background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%)">
-                  <form class="row g-3 mt-1" action = "{{route('saveAutor')}}" method="POST">
+                  <form class="row g-3 mt-1" action = "{{route('autor.store')}}" method="POST">
                     @csrf
                     <div class="col-12">
                       <label class="form-label">Nombre del Autor</label>

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\validateAutor;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 class controladorAutores extends Controller
 {
@@ -13,7 +16,9 @@ class controladorAutores extends Controller
      */
     public function index()
     {
-        //
+        $consulAut= DB::table('tb_autores')->get();
+
+        return view('consultaAutor', compact('consulAut'));
     }
 
     /**
@@ -23,7 +28,7 @@ class controladorAutores extends Controller
      */
     public function create()
     {
-        //
+        return view('registroAutor');
     }
 
     /**
@@ -32,9 +37,17 @@ class controladorAutores extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(validateAutor $request)
     {
-        //
+        DB::table('tb_autores')->insert([
+            "nombre"=>$request->input('txtAutor'),
+            "fecha"=>$request->input('txtFecha'),
+            "publi"=>$request->input('txtCant'),
+            "created_at"=>Carbon::now(),
+            "updated_at"=>Carbon::now(),
+        ]);
+
+        return redirect('autor/index')->with('confirm','Se guardo exitosamente')->with('autor', $request->txtAutor);
     }
 
     /**
@@ -56,7 +69,9 @@ class controladorAutores extends Controller
      */
     public function edit($id)
     {
-        //
+        $conAut = DB::table('tb_autores')->where('idAutor',$id)->first();
+
+        return view('editarAutor', compact('conAut'));
     }
 
     /**
@@ -66,9 +81,16 @@ class controladorAutores extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(validateAutor $request, $id)
     {
-        //
+        DB::table('tb_autores')->where('idAutor',$id)->update([
+            "nombre"=>$request->input('txtAutor'),
+            "fecha"=>$request->input('txtFecha'),
+            "publi"=>$request->input('txtCant'),
+            "updated_at"=>Carbon::now(),
+        ]);
+
+        return redirect('autor/index')->with('edit','Se edito exitosamente')->with('autor', $request->txtAutor);
     }
 
     /**
@@ -79,6 +101,8 @@ class controladorAutores extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('tb_autores')->where('idAutor',$id)->delete();
+
+        return redirect('autor/index')->with('delete','Se elimino correctamente');
     }
 }

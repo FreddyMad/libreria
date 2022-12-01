@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="{{ asset('css/estilos.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>@yield('titulo')</title>
@@ -18,10 +18,10 @@
             </figure>
             <div class="hero__options">
                 <a href="{{route('main')}}" class="hero__navlink {{request()->routeIs('main')?'text-primary':'active'}}">Inicio</a>
-                <a href="{{route('consulLibro')}}" class="hero__navlink {{request()->routeIs('consulLibro')?'text-primary':'active'}}">Consultar Libros</a>
-                <a href="{{route('form')}}" class="hero__navlink {{request()->routeIs('form')?'text-primary':'active'}}">Agregar Libro</a>
-                <a href="{{route('consulAutor')}}" class="hero__navlink {{request()->routeIs('consulAutor')?'text-primary':'active'}}">Consultar Autores</a>
-                <a href="{{route('formAutor')}}" class="hero__navlink {{request()->routeIs('formAutor')?'text-primary':'active'}}">Agregar Autor</a>
+                <a href="{{route('libro.index')}}" class="hero__navlink {{request()->routeIs('libro.index')?'text-primary':'active'}}">Consultar Libros</a>
+                <a href="{{route('libro.create')}}" class="hero__navlink {{request()->routeIs('libro.create')?'text-primary':'active'}}">Agregar Libro</a>
+                <a href="{{route('autor.index')}}" class="hero__navlink {{request()->routeIs('autor.index')?'text-primary':'active'}}">Consultar Autores</a>
+                <a href="{{route('autor.create')}}" class="hero__navlink {{request()->routeIs('autor.create')?'text-primary':'active'}}">Agregar Autor</a>
 
             </div>
         </nav>

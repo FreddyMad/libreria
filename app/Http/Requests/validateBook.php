@@ -13,7 +13,7 @@ class validateBook extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -25,7 +25,7 @@ class validateBook extends FormRequest
     {
         return [
             'txtTitulo'=>'required',
-            'txtIsbn'=>'min:13|required',
+            'txtIsbn'=>'min:13|max:13|required',
             'txtAutor'=>'required',
             'txtPaginas'=>'numeric|required',
             'txtEditorial'=>'required',

@@ -4,6 +4,17 @@
 
     @section('contenido')
 
+    @if (session()->has('confirm'))
+        <?php $libro = session()->get('libro')?>
+            {!!"<script> Swal.fire({
+                position: 'top',
+                icon: 'success',
+                title: 'Se ha agregado un nuevo libro; {$libro}',
+                showConfirmButton: false,
+                timer: 3500
+            })</script>"!!}
+    @endif
+
         <main>
             <div class="titulo">
                 <h1 class="titulo--principal">Consulta de Libros</h1>
@@ -13,13 +24,6 @@
                 <div class="col"> 
                   <img src="{!! asset('img/icon.svg') !!}" alt="icono" style="width: 100px">
                 </div>
-
-                @if (session()->has('confirm'))
-                <?php $autor = session()->get('autor')?>
-                  <div class="alert alert-success" role="alert">
-                    El autor {{$autor}} ha sido agregado con exito
-                  </div>
-                @endif
 
                   <div class="table__contenedor">
                     <table class="table__consultar">
@@ -34,36 +38,19 @@
                             <th>Borrar</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Alfredo Madrigal Tercero</td>
-                                <td>121059641</td>
-                                <td>25-08-2001</td>
-                                <td>121059641</td>
-                                <td>25-08-2001</td>
-                                <td>121059641</td>
-                                <td><a href=""><img src="{!! asset('img/actualizar.png') !!}" alt="Editar" class="table__img"></a></td>
-                                <td><a href=""><img src="{!! asset('img/borrar.png') !!}" alt="Borrar" class="table__img"></a></td>
-                            </tr>
-                            <tr>
-                                <td>Gabriel Galván Niño</td>
-                                <td>154756632</td>
-                                <td>23-09-2002</td>
-                                <td>121059641</td>
-                                <td>25-08-2001</td>
-                                <td>121059641</td>
-                                <td><a href=""><img src="{!! asset('img/actualizar.png') !!}" alt="Editar" class="table__img"></a></td>
-                                <td><a href=""><img src="{!! asset('img/borrar.png') !!}" alt="Borrar" class="table__img"></a></td>
-                            </tr>
-                            <tr>
-                                <td>Benjamín Enríquez Téllez</td>
-                                <td>121040060</td>
-                                <td>29-11-2000</td>
-                                <td>121059641</td>
-                                <td>25-08-2001</td>
-                                <td>121059641</td>
-                                <td><a href=""><img src="{!! asset('img/actualizar.png') !!}" alt="Editar" class="table__img"></a></td>
-                                <td><a href=""><img src="{!! asset('img/borrar.png') !!}" alt="Borrar" class="table__img"></a></td>
-                            </tr>
+                            @foreach ($consulLibro as $libros)
+                                <tr>
+                                    <td>{{$libros->titulo}}</td>
+                                    <td>{{$libros->isbn}}</td>
+                                    <td>{{$libros->autor_id}}</td>
+                                    <td>{{$libros->paginas}}</td>
+                                    <td>{{$libros->editorial}}</td>
+                                    <td>{{$libros->email}}</td>
+                                    <td><a href="{{route('libro.edit', $libros->idLibro)}}"><img src="{!! asset('img/actualizar.png') !!}" alt="Editar" class="table__img"></a></td>
+                                    <td><a type="button" data-bs-toggle="modal" data-bs-target="#eliminarLibro{{ $libros->idLibro }}"><img src="{!! asset('img/borrar.png') !!}" alt="Borrar" class="table__img"></a></td>
+                                    @include('eliminarLibro')
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

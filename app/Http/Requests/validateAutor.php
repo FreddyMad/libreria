@@ -26,7 +26,7 @@ class validateAutor extends FormRequest
         return [
             'txtAutor'=>'min:4|required',
             'txtFecha'=>'required',
-            'txtCant'=>'max:4|numeric|required'
+            'txtCant'=>'numeric|digits_between:1,4|required'
         ];
     }
 }

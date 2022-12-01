@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="card card-boby mt-3 mb-3" style="background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%)">
-                  <form class="row g-3 mt-1" action = "{{route('saveBook')}}" method="POST">
+                  <form class="row g-3 mt-1" action = "{{route('libro.store')}}" method="POST">
                     @csrf
                     <div class="col-8">
                       <label class="form-label">Titulo</label>
