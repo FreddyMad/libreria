@@ -40,7 +40,12 @@
                     </div>
                     <div class="col-8">
                       <label class="form-label">Autor</label>
-                      <input type="text" class="form-control" value="{{old('txtAutor')}}" name="txtAutor" placeholder="Ingresa el autor del libro">
+                      <select class="form-select" aria-label="Default select example" name="txtAutor">
+                        <option selected>Selecciona al Autor</option>
+                        @foreach ($cAutores as $autores)
+                          <option value={{$autores->idAutor}}>{{$autores->nombre}}</option>
+                        @endforeach
+                      </select>
                       <p class="text-warning fst-Italic">{{ $errors->first('txtAutor')}}</p>
                     </div>
                     <div class="col-4">

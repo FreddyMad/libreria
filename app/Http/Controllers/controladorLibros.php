@@ -18,6 +18,10 @@ class controladorLibros extends Controller
     {
         $consulLibro= DB::table('tb_libros')->get();
 
+        foreach($consulLibro as $lib){
+            $lib->nombreAutor = DB::table('tb_autores')->where('idAutor',$lib->autor_id)->first();
+        }
+
         return view('consultaLibro', compact('consulLibro'));
     }
 
@@ -28,7 +32,9 @@ class controladorLibros extends Controller
      */
     public function create()
     {
-        return view('registro');
+        $cAutores= DB::table('tb_autores')->get();
+
+        return view('registro', compact('cAutores'));
     }
 
     /**
@@ -37,7 +43,7 @@ class controladorLibros extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(validateBook $request)
     {
         DB::table('tb_libros')->insert([
             "titulo"=>$request->input('txtTitulo'),
@@ -72,7 +78,13 @@ class controladorLibros extends Controller
      */
     public function edit($id)
     {
-        //
+        $conLib = DB::table('tb_libros')->where('idLibro',$id)->first();
+
+        $cAutores= DB::table('tb_autores')->get();
+
+        
+
+        return view('editarLibro', compact('conLib', 'cAutores'));
     }
 
     /**
@@ -84,7 +96,17 @@ class controladorLibros extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::table('tb_libros')->where('idLibro',$id)->update([
+            "titulo"=>$request->input('txtTitulo'),
+            "isbn"=>$request->input('txtIsbn'),
+            "autor_id"=>$request->input('txtAutor'),
+            "paginas"=>$request->input('txtPaginas'),
+            "editorial"=>$request->input('txtEditorial'),
+            "email"=>$request->input('txtEmail'),
+            "updated_at"=>Carbon::now(),
+        ]);
+
+        return redirect('libro/index')->with('edit','Se guardo exitosamente')->with('titulo', $request->txtTitulo);
     }
 
     /**
@@ -95,6 +117,8 @@ class controladorLibros extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('tb_libros')->where('idLibro',$id)->delete();
+
+        return redirect('libro/index')->with('delete','Se elimino correctamente');
     }
 }

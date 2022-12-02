@@ -1,6 +1,6 @@
 
 <!-- Modal -->
-<div class="modal fade" id="eliminarAutor{{ $libros->idLibro }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="eliminarAutor" aria-hidden="true">
+<div class="modal fade" id="eliminarLibro{{ $libros->idLibro }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="eliminarLibro" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     
     <div class="modal-content">
@@ -11,8 +11,8 @@
       </div>
       
       <div class="modal-body">
-        <p class="card-text"> Estaras eliminando al autor: <br><b> {{ $libros->titulo }} </b></p>
-            <form action="{{route('autor.destroy', $libros->idLibro)}}" method="POST">
+        <p class="card-text"> Estaras eliminando al libro: <br><b> {{ $libros->titulo }} </b></p>
+            <form action="{{route('libro.destroy', $libros->idLibro)}}" method="POST">
                 @csrf
                 @method('delete')
       </div>

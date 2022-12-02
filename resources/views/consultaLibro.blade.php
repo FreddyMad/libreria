@@ -5,11 +5,33 @@
     @section('contenido')
 
     @if (session()->has('confirm'))
-        <?php $libro = session()->get('libro')?>
+        <?php $libro = session()->get('titulo')?>
             {!!"<script> Swal.fire({
-                position: 'top',
+                position: 'center',
                 icon: 'success',
                 title: 'Se ha agregado un nuevo libro; {$libro}',
+                showConfirmButton: false,
+                timer: 3500
+            })</script>"!!}
+    @endif
+
+    @if (session()->has('edit'))
+        <?php $libro = session()->get('titulo')?>
+            {!!"<script> Swal.fire({
+                position: 'center',
+                icon: 'info',
+                title: 'Se ha editado el libro; {$libro}',
+                showConfirmButton: false,
+                timer: 3500
+            })</script>"!!}
+    @endif
+
+    @if (session()->has('delete'))
+        <?php $libro = session()->get('titulo')?>
+            {!!"<script> Swal.fire({
+                position: 'center',
+                icon: 'warning',
+                title: 'Se ha eliminado el libro {$libro}',
                 showConfirmButton: false,
                 timer: 3500
             })</script>"!!}
@@ -42,7 +64,7 @@
                                 <tr>
                                     <td>{{$libros->titulo}}</td>
                                     <td>{{$libros->isbn}}</td>
-                                    <td>{{$libros->autor_id}}</td>
+                                    <td>{{$libros->nombreAutor->nombre}}</td>
                                     <td>{{$libros->paginas}}</td>
                                     <td>{{$libros->editorial}}</td>
                                     <td>{{$libros->email}}</td>
